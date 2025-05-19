@@ -27,6 +27,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include "dependency_info.h"  
 
 #include "apidefs.h"
 
@@ -373,6 +374,7 @@ Should only be called for mesh outputs.
 :rtype: Tuple[int,int]
 )");
   virtual rdcpair<uint32_t, uint32_t> PickVertex(uint32_t x, uint32_t y) = 0;
+  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
 
   static const uint32_t NoResult = ~0U;
 

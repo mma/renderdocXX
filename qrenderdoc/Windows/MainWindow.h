@@ -141,6 +141,7 @@ public:
   void showPerformanceCounterViewer() { on_action_Counter_Viewer_triggered(); }
   void showResourceInspector() { on_action_Resource_Inspector_triggered(); }
   void showExtensionManager() { on_action_Manage_Extensions_triggered(); }
+  void showDependencyViewer() { on_action_Dependency_Viewer_triggered(); }
   void PopulateRecentCaptureFiles();
   void PopulateRecentCaptureSettings();
   void PopulateReportedBugs();
@@ -183,6 +184,7 @@ private slots:
   void on_action_Send_Error_Report_triggered();
   void on_action_Check_for_Updates_triggered();
   void on_action_Clear_Reported_Bugs_triggered();
+  void on_action_Dependency_Viewer_triggered();
 
   // manual slots
   void saveLayout_triggered();

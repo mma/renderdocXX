@@ -2489,6 +2489,13 @@ If no bookmark exists, this function will do nothing.
 :rtype: ResourceInspector
 )");
   virtual IResourceInspector *GetResourceInspector() = 0;
+  
+  DOCUMENT(R"(Retrieve the current singleton :class:`DependencyViewer`.
+
+:return: The current window, which is created (but not shown) it there wasn't one open.
+:rtype: DependencyViewer
+)");
+  virtual IDependencyViewer *GetDependencyViewer() = 0;
 
   DOCUMENT(R"(Check if there is a current :class:`EventBrowser` open.
 
@@ -2587,6 +2594,13 @@ If no bookmark exists, this function will do nothing.
 :rtype: bool
 )");
   virtual bool HasResourceInspector() = 0;
+  
+  DOCUMENT(R"(Check if there is a current :class:`DependencyViewer` open.
+
+:return: ``True`` if there is a window open.
+:rtype: bool
+)");
+  virtual bool HasDependencyViewer() = 0;
 
   DOCUMENT("Raise the current :class:`EventBrowser`, showing it in the default place if needed.");
   virtual void ShowEventBrowser() = 0;
@@ -2625,6 +2639,9 @@ place if needed.
   DOCUMENT(
       "Raise the current :class:`ResourceInspector`, showing it in the default place if needed.");
   virtual void ShowResourceInspector() = 0;
+  DOCUMENT(
+      "Raise the current :class:`DependencyViewer`, showing it in the default place if needed.");
+  virtual void ShowDependencyViewer() = 0;
 
   DOCUMENT(R"(Show a new :class:`ShaderViewer` window, showing an editable view of a given shader.
 

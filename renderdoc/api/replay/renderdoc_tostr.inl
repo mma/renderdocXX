@@ -1318,3 +1318,40 @@ rdcstr DoStringise(const ShaderStageMask &el)
   }
   END_BITFIELD_STRINGISE();
 }
+
+template <>
+rdcstr DoStringise(const vivo::DepPassType &el)
+{
+  BEGIN_ENUM_STRINGISE(vivo::DepPassType);
+  {
+    STRINGISE_ENUM_CLASS(PASS_TYPE_RENDERPASS);
+    STRINGISE_ENUM_CLASS(PASS_TYPE_COMPUTE);
+    STRINGISE_ENUM_CLASS(PASS_TYPE_COPY);
+  }
+  END_ENUM_STRINGISE();
+}
+
+template <>
+rdcstr DoStringise(const vivo::DepLoadOp &el)
+{
+  BEGIN_ENUM_STRINGISE(vivo::DepLoadOp);
+  {
+    STRINGISE_ENUM_CLASS(LOAD_OP_LOAD);
+    STRINGISE_ENUM_CLASS(LOAD_OP_CLEAR);
+    STRINGISE_ENUM_CLASS(LOAD_OP_DONT_CARE);
+    STRINGISE_ENUM_CLASS(LOAD_OP_NONE_KHR);
+  }
+  END_ENUM_STRINGISE();
+}
+
+template <>
+rdcstr DoStringise(const vivo::DepStoreOp &el)
+{
+  BEGIN_ENUM_STRINGISE(vivo::DepStoreOp);
+  {
+    STRINGISE_ENUM_CLASS(STORE_OP_STORE);
+    STRINGISE_ENUM_CLASS(STORE_OP_DONT_CARE);
+    STRINGISE_ENUM_CLASS(STORE_OP_NONE);
+  }
+  END_ENUM_STRINGISE();
+}

@@ -1314,6 +1314,16 @@ void MainWindow::on_action_Clear_Reported_Bugs_triggered()
   m_Ctx.Config().Save();
 }
 
+void MainWindow::on_action_Dependency_Viewer_triggered()
+{
+  QWidget *dependencyViewer = m_Ctx.GetDependencyViewer()->Widget();
+
+  if(ui->toolWindowManager->toolWindows().contains(dependencyViewer))
+    ToolWindowManager::raiseToolWindow(dependencyViewer);
+  else
+    ui->toolWindowManager->addToolWindow(dependencyViewer, mainToolArea());
+}
+
 void MainWindow::PopulateReportedBugs()
 {
   ui->menu_Reported_Bugs->clear();
@@ -1595,6 +1605,9 @@ ToolWindowManager::AreaReference MainWindow::mainToolArea()
           ui->toolWindowManager->toolWindows().contains(m_Ctx.GetCaptureDialog()->Widget()))
     return ToolWindowManager::AreaReference(
         ToolWindowManager::AddTo, ui->toolWindowManager->areaOf(m_Ctx.GetCaptureDialog()->Widget()));
+          ui->toolWindowManager->toolWindows().contains(m_Ctx.GetDependencyViewer()->Widget()))
+    return ToolWindowManager::AreaReference(
+        ToolWindowManager::AddTo, ui->toolWindowManager->areaOf(m_Ctx.GetDependencyViewer()->Widget()));
 
   // if all else fails just add to the last place we placed something.
   return ToolWindowManager::AreaReference(ToolWindowManager::LastUsedArea);

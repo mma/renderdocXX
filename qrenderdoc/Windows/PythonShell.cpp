@@ -609,6 +609,10 @@ struct CaptureContextInvoker : ObjectForwarder<ICaptureContext>
   {
     return InvokeRetFunction<ResourceId>(&ICaptureContext::GetResourceReplacement, id);
   }
+  virtual IDependencyViewer *GetDependencyViewer() override
+  {
+    return InvokeRetFunction<IDependencyViewer *>(&ICaptureContext::GetDependencyViewer);
+  }
   virtual void RegisterReplacement(ResourceId from, ResourceId to) override
   {
     InvokeVoidFunction(&ICaptureContext::RegisterReplacement, from, to);
@@ -763,6 +767,10 @@ struct CaptureContextInvoker : ObjectForwarder<ICaptureContext>
   {
     return InvokeRetFunction<bool>(&ICaptureContext::HasResourceInspector);
   }
+  virtual bool HasDependencyViewer() override
+  {
+    return InvokeRetFunction<bool>(&ICaptureContext::HasDependencyViewer);
+  }
 
   virtual void ShowEventBrowser() override
   {
@@ -801,6 +809,10 @@ struct CaptureContextInvoker : ObjectForwarder<ICaptureContext>
   virtual void ShowStatisticsViewer() override
   {
     InvokeVoidFunction(&ICaptureContext::ShowStatisticsViewer);
+  }
+  virtual void ShowDependencyViewer() override
+  {
+    InvokeVoidFunction(&ICaptureContext::ShowDependencyViewer);
   }
   virtual void ShowTimelineBar() override { InvokeVoidFunction(&ICaptureContext::ShowTimelineBar); }
   virtual void ShowPythonShell() override { InvokeVoidFunction(&ICaptureContext::ShowPythonShell); }

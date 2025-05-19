@@ -1005,6 +1005,8 @@ void CaptureContext::LoadCaptureThreaded(const QString &captureFile, const Repla
     m_PostloadProgress = 0.4f;
 
     m_WinSystems = r->GetSupportedWindowSystems();
+	
+	m_DepPassInfos = r->GetDepPassInfos();
 
 #if defined(RENDERDOC_PLATFORM_WIN32)
     m_CurWinSystem = WindowingSystem::Win32;
@@ -2394,6 +2396,18 @@ IResourceInspector *CaptureContext::GetResourceInspector()
   return m_ResourceInspector;
 }
 
+IDependencyViewer *CaptureContext::GetDependencyViewer()
+{
+  if(m_DependencyViewer)
+    return m_DependencyViewer;
+
+  m_DependencyViewer = new DependencyViewer(*this, m_MainWindow);
+  m_DependencyViewer->setObjectName(lit("dependencyViewer"));
+  setupDockWindow(m_DependencyViewer, true);
+
+  return m_DependencyViewer;
+}
+
 void CaptureContext::ShowEventBrowser()
 {
   m_MainWindow->showEventBrowser();
@@ -2462,6 +2476,11 @@ void CaptureContext::ShowPythonShell()
 void CaptureContext::ShowResourceInspector()
 {
   m_MainWindow->showResourceInspector();
+}
+
+void CaptureContext::ShowDependencyViewer()
+{
+  m_MainWindow->showDependencyViewer();
 }
 
 IShaderViewer *CaptureContext::EditShader(ResourceId id, ShaderStage stage, const rdcstr &entryPoint,
@@ -2702,6 +2721,10 @@ QWidget *CaptureContext::CreateBuiltinWindow(const rdcstr &objectName)
   {
     return GetPerformanceCounterViewer()->Widget();
   }
+    else if(objectName == "dependencyViewer")
+  {
+    return GetDependencyViewer()->Widget();
+  }
 
   return NULL;
 }
@@ -2736,6 +2759,8 @@ void CaptureContext::BuiltinWindowClosed(QWidget *window)
     m_ResourceInspector = NULL;
   else if(m_PerformanceCounterViewer && m_PerformanceCounterViewer->Widget() == window)
     m_PerformanceCounterViewer = NULL;
+  else if(m_DependencyViewer && m_DependencyViewer->Widget() == window)
+    m_DependencyViewer = NULL;
   else
     qCritical() << "Unrecognised window being closed: " << window;
 }

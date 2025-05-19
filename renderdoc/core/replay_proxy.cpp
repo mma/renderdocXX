@@ -103,6 +103,7 @@ rdcstr DoStringise(const ReplayProxyPacket &el)
     STRINGISE_ENUM_NAMED(eReplayProxy_GetDescriptorAccess, "GetDescriptorAccess");
     STRINGISE_ENUM_NAMED(eReplayProxy_GetDescriptorLocations, "GetDescriptorLocations");
     STRINGISE_ENUM_NAMED(eReplayProxy_GetDescriptorStores, "GetDescriptorStores");
+	STRINGISE_ENUM_NAMED(eReplayProxy_GetDepPassInfos, "GetDepPassInfos"); 
   }
   END_ENUM_STRINGISE();
 }
@@ -3133,6 +3134,7 @@ bool ReplayProxy::Tick(int type)
     case eReplayProxy_GetTexture: GetTexture(ResourceId()); break;
     case eReplayProxy_GetBuffers: GetBuffers(); break;
     case eReplayProxy_GetBuffer: GetBuffer(ResourceId()); break;
+	case eReplayProxy_GetDepPassInfos: GetDepPassInfos(); break;
     case eReplayProxy_GetShaderEntryPoints: GetShaderEntryPoints(ResourceId()); break;
     case eReplayProxy_GetShader: GetShader(ResourceId(), ResourceId(), ShaderEntryPoint()); break;
     case eReplayProxy_GetDebugMessages: GetDebugMessages(); break;
@@ -3227,4 +3229,33 @@ bool ReplayProxy::Tick(int type)
     return false;
 
   return true;
+}
+
+template <typename ParamSerialiser, typename ReturnSerialiser>
+rdcarray<vivo::DepPassInfo> ReplayProxy::Proxied_GetDepPassInfos(ParamSerialiser &paramser,
+                                                                ReturnSerialiser &retser)
+{
+  const ReplayProxyPacket expectedPacket = eReplayProxy_GetDepPassInfos;
+  ReplayProxyPacket packet = eReplayProxy_GetDepPassInfos;
+  rdcarray<vivo::DepPassInfo> ret;
+
+  {
+    BEGIN_PARAMS();
+    END_PARAMS();
+  }
+
+  {
+    REMOTE_EXECUTION();
+    if(paramser.IsReading() && !paramser.IsErrored() && !m_IsErrored)
+      ret = m_Remote->GetDepPassInfos();
+  }
+
+  SERIALISE_RETURN(ret);
+
+  return ret;
+}
+
+rdcarray<vivo::DepPassInfo> ReplayProxy::GetDepPassInfos()
+{
+  PROXY_FUNCTION(GetDepPassInfos);
 }

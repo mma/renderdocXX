@@ -54,6 +54,7 @@ class PythonShell;
 class ResourceInspector;
 class ShaderViewer;
 class MiniQtHelper;
+class DependencyViewer;
 
 class QFileSystemWatcher;
 
@@ -219,6 +220,7 @@ public:
   ITimelineBar *GetTimelineBar() override;
   IPythonShell *GetPythonShell() override;
   IResourceInspector *GetResourceInspector() override;
+  IDependencyViewer *GetDependencyViewer() override;
 
   bool HasEventBrowser() override { return m_EventBrowser != NULL; }
   bool HasAPIInspector() override { return m_APIInspector != NULL; }
@@ -234,6 +236,7 @@ public:
   bool HasTimelineBar() override { return m_TimelineBar != NULL; }
   bool HasPythonShell() override { return m_PythonShell != NULL; }
   bool HasResourceInspector() override { return m_ResourceInspector != NULL; }
+  bool HasDependencyViewer() override { return m_DependencyViewer != NULL; }
   void ShowEventBrowser() override;
   void ShowAPIInspector() override;
   void ShowTextureViewer() override;
@@ -248,6 +251,7 @@ public:
   void ShowTimelineBar() override;
   void ShowPythonShell() override;
   void ShowResourceInspector() override;
+  void ShowDependencyViewer() override;
 
   IShaderViewer *EditShader(ResourceId id, ShaderStage stage, const rdcstr &entryPoint,
                             const rdcstrpairs &files, KnownShaderTool knownTool,
@@ -441,4 +445,5 @@ private:
   TimelineBar *m_TimelineBar = NULL;
   PythonShell *m_PythonShell = NULL;
   ResourceInspector *m_ResourceInspector = NULL;
+  DependencyViewer *m_DependencyViewer = NULL;
 };

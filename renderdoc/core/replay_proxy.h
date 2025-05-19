@@ -112,6 +112,7 @@ enum ReplayProxyPacket
   eReplayProxy_GetDescriptorAccess,
   eReplayProxy_GetDescriptorLocations,
   eReplayProxy_GetDescriptorStores,
+  eReplayProxy_GetDepPassInfos,
 
   eReplayProxy_ClearReplayCache,
 };
@@ -529,7 +530,8 @@ public:
   IMPLEMENT_FUNCTION_PROXIED(ResourceId, RenderOverlay, ResourceId texid, FloatVector clearCol,
                              DebugOverlay overlay, uint32_t eventId,
                              const rdcarray<uint32_t> &passEvents);
-
+							 
+  IMPLEMENT_FUNCTION_PROXIED(rdcarray<vivo::DepPassInfo>, GetDepPassInfos);
   IMPLEMENT_FUNCTION_PROXIED(rdcarray<ShaderEntryPoint>, GetShaderEntryPoints, ResourceId shader);
   IMPLEMENT_FUNCTION_PROXIED(ShaderReflection *, GetShader, ResourceId pipeline, ResourceId,
                              ShaderEntryPoint entry);
