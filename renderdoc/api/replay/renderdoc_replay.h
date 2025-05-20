@@ -374,7 +374,6 @@ Should only be called for mesh outputs.
 :rtype: Tuple[int,int]
 )");
   virtual rdcpair<uint32_t, uint32_t> PickVertex(uint32_t x, uint32_t y) = 0;
-  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
 
   static const uint32_t NoResult = ~0U;
 
@@ -614,6 +613,9 @@ with the internal shader compiler.
 
 :param List[str] directories: The absolute paths of the directories.
 )");
+
+  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
+
   virtual void SetCustomShaderIncludes(const rdcarray<rdcstr> &directories) = 0;
 
   DOCUMENT(R"(Builds a shader suitable for running on the local replay instance as a custom shader.
