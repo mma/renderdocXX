@@ -31,11 +31,12 @@
     <RootNamespace>qrenderdoc</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <ProjectName>qrenderdoc</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\util\WindowsSDKTarget.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
-    <PlatformToolSet>v140</PlatformToolSet>
+    <PlatformToolSet>v143</PlatformToolSet>
     <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
     <CharacterSet>NotSet</CharacterSet>
@@ -696,6 +697,7 @@
     <ClCompile Include="$(IntDir)generated\moc_ToolWindowManagerWrapper.cpp" />
     <ClCompile Include="$(IntDir)generated\moc_VirtualFileDialog.cpp" />
     <ClCompile Include="$(IntDir)generated\moc_VulkanPipelineStateViewer.cpp" />
+    <ClCompile Include="$(IntDir)generated\moc_DependencyViewer.cpp" />
     <ClCompile Include="$(IntDir)generated\qrc_resources.cpp" />
     <ClCompile Include="$(IntDir)generated\qrc_qtconf.cpp" />
     <ClCompile Include="$(IntDir)generated\renderdoc_python.cxx">
@@ -744,6 +746,19 @@
     <ClCompile Include="Styles\RDTweakedNativeStyle\RDTweakedNativeStyle.cpp" />
     <ClCompile Include="Widgets\CustomPaintWidget.cpp" />
     <ClCompile Include="Windows\APIInspector.cpp" />
+    <ClCompile Include="Windows\Dependency\BaseGraphicsWidget.cpp" />
+    <ClCompile Include="Windows\Dependency\BaseLayoutItem.cpp" />
+    <ClCompile Include="Windows\Dependency\ComposeWidget.cpp" />
+    <ClCompile Include="Windows\Dependency\DependencyMenu.cpp" />
+    <ClCompile Include="Windows\Dependency\DependencyScene.cpp" />
+    <ClCompile Include="Windows\Dependency\DependencyView.cpp" />
+    <ClCompile Include="Windows\Dependency\FlagNameItem.cpp" />
+    <ClCompile Include="Windows\Dependency\GraphicsPixmapItem.cpp" />
+    <ClCompile Include="Windows\Dependency\GraphicsPixmapTitleItem.cpp" />
+    <ClCompile Include="Windows\Dependency\InfosItem.cpp" />
+    <ClCompile Include="Windows\Dependency\MySlot.cpp" />
+    <ClCompile Include="Windows\Dependency\NodeLink.cpp" />
+    <ClCompile Include="Windows\Dependency\PassItem.cpp" />
     <ClCompile Include="Windows\ResourceInspector.cpp" />
     <ClCompile Include="Windows\BufferViewer.cpp" />
     <ClCompile Include="Windows\DebugMessageView.cpp" />
@@ -783,6 +798,7 @@
     <ClCompile Include="Windows\PipelineState\GLPipelineStateViewer.cpp" />
     <ClCompile Include="Windows\PipelineState\PipelineStateViewer.cpp" />
     <ClCompile Include="Windows\PipelineState\VulkanPipelineStateViewer.cpp" />
+    <ClCompile Include="Windows\Dependency\DependencyViewer.cpp" />
     <ClCompile Include="Windows\ShaderViewer.cpp" />
     <ClCompile Include="Windows\ShaderMessageViewer.cpp" />
     <ClCompile Include="Windows\PythonShell.cpp" />
@@ -846,6 +862,19 @@
     <ClInclude Include="3rdparty\scintilla\lexlib\SubStyles.h" />
     <ClInclude Include="3rdparty\scintilla\lexlib\WordList.h" />
     <ClInclude Include="3rdparty\scintilla\qt\ScintillaEditBase\PlatQt.h" />
+    <ClInclude Include="Windows\Dependency\BaseGraphicsWidget.h" />
+    <ClInclude Include="Windows\Dependency\BaseLayoutItem.h" />
+    <ClInclude Include="Windows\Dependency\ComposeWidget.h" />
+    <ClInclude Include="Windows\Dependency\DependencyMenu.h" />
+    <ClInclude Include="Windows\Dependency\DependencyScene.h" />
+    <ClInclude Include="Windows\Dependency\DependencyView.h" />
+    <ClInclude Include="Windows\Dependency\FlagNameItem.h" />
+    <ClInclude Include="Windows\Dependency\GraphicsPixmapItem.h" />
+    <ClInclude Include="Windows\Dependency\GraphicsPixmapTitleItem.h" />
+    <ClInclude Include="Windows\Dependency\InfosItem.h" />
+    <ClInclude Include="Windows\Dependency\MySlot.h" />
+    <ClInclude Include="Windows\Dependency\NodeLink.h" />
+    <ClInclude Include="Windows\Dependency\PassItem.h" />
     <CustomBuild Include="Windows\Dialogs\PerformanceCounterSelection.h">
       <AdditionalInputs>%(Fullpath);$(QtBinDir)\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command>"$(QtBinDir)\moc.exe" -DUNICODE -DWIN32 -DWIN64 -D_WIN32 -D_WIN64 -DRENDERDOC_PLATFORM_WIN32 -DSCINTILLA_QT=1 -DSCI_LEXER=1 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1900 -I"$(ProjectDir)." -I"$(SolutionDir)\renderdoc\api\replay" -I"$(QtIncludeDir)" -I"$(QtIncludeDir)\QtWidgets" -I"$(QtIncludeDir)\QtGui" -I"$(QtIncludeDir)\QtCore" "%(Fullpath)" -o "$(IntDir)generated\moc_%(Filename).cpp"</Command>
@@ -998,6 +1027,7 @@
     <ClInclude Include="$(IntDir)generated\ui_ReplayOptionsSelector.h" />
     <ClInclude Include="$(IntDir)generated\ui_VirtualFileDialog.h" />
     <ClInclude Include="$(IntDir)generated\ui_VulkanPipelineStateViewer.h" />
+    <ClInclude Include="$(IntDir)generated\ui_DependencyViewer.h" />
     <ClInclude Include="Code\RGPInterop.h" />
     <ClInclude Include="Code\CaptureContext.h" />
     <ClInclude Include="Styles\StyleData.h" />
@@ -1377,6 +1407,12 @@
       <Message>MOC %(Filename).h</Message>
       <Outputs>$(IntDir)generated\moc_%(Filename).cpp</Outputs>
     </CustomBuild>
+    <CustomBuild Include="Windows\Dependency\DependencyViewer.h">
+      <AdditionalInputs>%(Fullpath);$(QtBinDir)\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command>"$(QtBinDir)\moc.exe" -DUNICODE -DWIN32 -DWIN64 -D_WIN32 -D_WIN64 -DRENDERDOC_PLATFORM_WIN32 -DSCINTILLA_QT=1 -DSCI_LEXER=1 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1900 -I"$(ProjectDir)." -I"$(SolutionDir)\renderdoc\api\replay" -I"$(QtIncludeDir)" -I"$(QtIncludeDir)\QtWidgets" -I"$(QtIncludeDir)\QtGui" -I"$(QtIncludeDir)\QtCore" "%(Fullpath)" -o "$(IntDir)generated\moc_%(Filename).cpp"</Command>
+      <Message>MOC %(Filename).h</Message>
+      <Outputs>$(IntDir)generated\moc_%(Filename).cpp</Outputs>
+    </CustomBuild>
     <CustomBuild Include="Windows\PixelHistoryView.h">
       <AdditionalInputs>%(Fullpath);$(QtBinDir)\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command>"$(QtBinDir)\moc.exe" -DUNICODE -DWIN32 -DWIN64 -D_WIN32 -D_WIN64 -DRENDERDOC_PLATFORM_WIN32 -DSCINTILLA_QT=1 -DSCI_LEXER=1 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -D_MSC_VER=1900 -I"$(ProjectDir)." -I"$(SolutionDir)\renderdoc\api\replay" -I"$(QtIncludeDir)" -I"$(QtIncludeDir)\QtWidgets" -I"$(QtIncludeDir)\QtGui" -I"$(QtIncludeDir)\QtCore" "%(Fullpath)" -o "$(IntDir)generated\moc_%(Filename).cpp"</Command>
@@ -1673,6 +1709,12 @@
       <Outputs>$(IntDir)generated\ui_%(Filename).h</Outputs>
     </CustomBuild>
     <CustomBuild Include="Windows\PipelineState\VulkanPipelineStateViewer.ui">
+      <AdditionalInputs>%(Fullpath);$(QtBinDir)\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command>"$(QtBinDir)\uic.exe" "%(Fullpath)" -o "$(IntDir)generated\ui_%(Filename).h"</Command>
+      <Message>UIC %(Filename).ui</Message>
+      <Outputs>$(IntDir)generated\ui_%(Filename).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="Windows\Dependency\DependencyViewer.ui">
       <AdditionalInputs>%(Fullpath);$(QtBinDir)\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command>"$(QtBinDir)\uic.exe" "%(Fullpath)" -o "$(IntDir)generated\ui_%(Filename).h"</Command>
       <Message>UIC %(Filename).ui</Message>

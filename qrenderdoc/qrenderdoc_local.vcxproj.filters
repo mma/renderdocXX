@@ -85,6 +85,9 @@
     <Filter Include="3rdparty\catch">
       <UniqueIdentifier>{3e544acc-65a0-4558-8a31-8865c030e996}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Windows\Dependency">
+      <UniqueIdentifier>{39998a24-82ee-4c40-bce3-6d5823d14bcc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3rdparty\toolwindowmanager\ToolWindowManager.cpp">
@@ -444,6 +447,9 @@
     <ClCompile Include="$(IntDir)generated\moc_GLPipelineStateViewer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_DependencyViewer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(IntDir)generated\moc_LiveCapture.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -771,6 +777,48 @@
     <ClCompile Include="Widgets\ComputeDebugSelector.cpp">
       <Filter>Widgets</Filter>
     </ClCompile>
+    <ClCompile Include="Windows\Dependency\DependencyViewer.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\BaseGraphicsWidget.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\BaseLayoutItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\ComposeWidget.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\DependencyMenu.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\DependencyScene.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\DependencyView.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\FlagNameItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\GraphicsPixmapItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\GraphicsPixmapTitleItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\InfosItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\MySlot.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\NodeLink.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows\Dependency\PassItem.cpp">
+      <Filter>Windows\Dependency</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdparty\flowlayout\FlowLayout.h">
@@ -1004,6 +1052,9 @@
     <ClInclude Include="$(IntDir)generated\ui_EnvironmentEditor.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(IntDir)generated\ui_DependencyViewer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="$(IntDir)generated\ui_EventBrowser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -1150,6 +1201,45 @@
     </ClInclude>
     <ClInclude Include="3rdparty\catch\official\catch.hpp">
       <Filter>3rdparty\catch</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\BaseGraphicsWidget.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\BaseLayoutItem.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\ComposeWidget.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\DependencyMenu.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\DependencyScene.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\DependencyView.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\FlagNameItem.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\GraphicsPixmapItem.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\GraphicsPixmapTitleItem.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\InfosItem.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\MySlot.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\NodeLink.h">
+      <Filter>Windows\Dependency</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\Dependency\PassItem.h">
+      <Filter>Windows\Dependency</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1573,6 +1663,12 @@
     </CustomBuild>
     <CustomBuild Include="Widgets\ComputeDebugSelector.ui">
       <Filter>Widgets</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Windows\Dependency\DependencyViewer.h">
+      <Filter>Windows\Dependency</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Windows\Dependency\DependencyViewer.ui">
+      <Filter>Windows\Dependency</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

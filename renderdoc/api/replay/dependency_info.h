@@ -1,4 +1,12 @@
-using namespace vivo
+#pragma once
+
+#include <map>
+#include <set>
+#include <vector>
+
+#include "data_types.h"
+
+namespace vivo
 {
 enum DepPassType
 {
@@ -26,11 +34,11 @@ struct DepImageInfo
 {
   DepImageInfo() = default;
   DepImageInfo(ResourceId imgId, rdcarray<uint32_t> subresources)
-        : m_ImageID(imgId), m_Subresources(subresources)
+      : m_ImageID(imgId), m_Subresources(subresources)
   {
   }
 
-  bool operator==(const DepImageInfo& in) const
+  bool operator==(const DepImageInfo &in) const
   {
     return m_ImageID == in.m_ImageID && m_Subresources == in.m_Subresources;
   }
@@ -41,37 +49,32 @@ struct DepImageInfo
 
 struct DepInputInfo
 {
-  bool operator==(const DepInputInfo& in) const
+  bool operator==(const DepInputInfo &in) const
   {
-    return m_ImageInfo == in.m_ImageInfo && m_BindSlot == in.m_BindSlot && m_DrawEid == in.m_DrawEid && m_Usage == in.m_Usage;
+    return m_ImageInfo == in.m_ImageInfo && m_BindSlot == in.m_BindSlot &&
+           m_DrawEid == in.m_DrawEid && m_Usage == in.m_Usage;
   }
-  bool operator<(const DepInputInfo &in) const
-  {
-    return m_BindSlot < in.m_BindSlot;
-  }
+  bool operator<(const DepInputInfo &in) const { return m_BindSlot < in.m_BindSlot; }
 
   DepImageInfo m_ImageInfo;
 
   uint32_t m_BindSlot;
 
   uint32_t m_DrawEid;
-  
+
   rdcstr m_Usage;
 };
 
 struct DepOutputInfo
 {
-  bool operator==(const DepOutputInfo& in) const
+  bool operator==(const DepOutputInfo &in) const
   {
     return m_ImageInfo == in.m_ImageInfo && m_Format == in.m_Format && m_Width == in.m_Width &&
            m_Height == in.m_Height && m_Depth == in.m_Depth && m_LoadOp == in.m_LoadOp &&
            m_StoreOp == in.m_StoreOp && m_StencilLoadOp == in.m_StencilLoadOp &&
            m_StencilStoreOp == in.m_StencilStoreOp;
   }
-  bool operator<(const DepOutputInfo &in) const
-  {
-    return false;
-  }
+  bool operator<(const DepOutputInfo &in) const { return false; }
 
   DepImageInfo m_ImageInfo;
 
@@ -95,7 +98,7 @@ struct DepPassInfo
   {
     if(m_PassIdx != in.m_PassIdx)
       return false;
-    
+
     if(m_StartEid != in.m_StartEid)
       return false;
 
@@ -103,12 +106,6 @@ struct DepPassInfo
       return false;
 
     if(m_PassType != in.m_PassType)
-      return false;
-
-    if(m_CmdBuf != in.m_CmdBuf)
-      return false;
-
-    if(m_SubmissionIdx != in.m_SubmissionIdx)
       return false;
 
     if(m_RP != in.m_RP)
@@ -129,10 +126,7 @@ struct DepPassInfo
     return true;
   }
 
-  bool operator<(const DepPassInfo &in) const
-  {
-    return m_PassIdx < in.m_PassIdx;
-  }
+  bool operator<(const DepPassInfo &in) const { return m_PassIdx < in.m_PassIdx; }
 
   /* for all pass */
   uint32_t m_PassIdx;
@@ -141,9 +135,6 @@ struct DepPassInfo
   uint32_t m_EndEid;
 
   DepPassType m_PassType;
-
-  ResourceId m_CmdBuf;
-  uint32_t m_SubmissionIdx;
 
   /* for render pass */
   ResourceId m_RP;
@@ -158,6 +149,7 @@ struct DepPassInfo
 };
 
 }
+
 DECLARE_REFLECTION_ENUM(vivo::DepPassType);
 DECLARE_REFLECTION_ENUM(vivo::DepLoadOp);
 DECLARE_REFLECTION_ENUM(vivo::DepStoreOp);
