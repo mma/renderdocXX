@@ -446,4 +446,10 @@ private:
   PythonShell *m_PythonShell = NULL;
   ResourceInspector *m_ResourceInspector = NULL;
   DependencyViewer *m_DependencyViewer = NULL;
+
+public:
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() override { return m_DepPassInfos; }
+
+private:
+  rdcarray<vivo::DepPassInfo> m_DepPassInfos;
 };

@@ -308,6 +308,7 @@ public:
   RenderOutputSubresource GetRenderOutputSubresource(ResourceId id);
   bool IsRenderOutput(ResourceId id) { return GetRenderOutputSubresource(id).mip != ~0U; }
   void FileChanged() {}
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
 private:
   bool m_WARP;
   bool m_Proxy;

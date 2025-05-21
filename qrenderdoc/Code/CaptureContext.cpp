@@ -60,6 +60,7 @@
 #include "Windows/StatisticsViewer.h"
 #include "Windows/TextureViewer.h"
 #include "Windows/TimelineBar.h"
+#include "Windows/Dependency/DependencyViewer.h"
 #include "MiniQtHelper.h"
 #include "QRDUtils.h"
 #include "RGPInterop.h"
@@ -1006,7 +1007,6 @@ void CaptureContext::LoadCaptureThreaded(const QString &captureFile, const Repla
 
     m_WinSystems = r->GetSupportedWindowSystems();
 	
-	m_DepPassInfos = r->GetDepPassInfos();
 
 #if defined(RENDERDOC_PLATFORM_WIN32)
     m_CurWinSystem = WindowingSystem::Win32;
@@ -1058,6 +1058,7 @@ void CaptureContext::LoadCaptureThreaded(const QString &captureFile, const Repla
 #endif
 
     m_StructuredFile = &r->GetStructuredFile();
+    m_DepPassInfos = r->GetDepPassInfos();
 
     m_ResourceList = r->GetResources();
 

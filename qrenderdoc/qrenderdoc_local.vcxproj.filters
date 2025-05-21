@@ -447,9 +447,6 @@
     <ClCompile Include="$(IntDir)generated\moc_GLPipelineStateViewer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(IntDir)generated\moc_DependencyViewer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(IntDir)generated\moc_LiveCapture.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -780,44 +777,86 @@
     <ClCompile Include="Windows\Dependency\DependencyViewer.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_DependencyViewer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\BaseGraphicsWidget.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_BaseGraphicsWidget.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\BaseLayoutItem.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_BaseLayoutItem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\ComposeWidget.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_ComposeWidget.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\DependencyMenu.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_DependencyMenu.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\DependencyScene.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_DependencyScene.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\DependencyView.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_DependencyView.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\FlagNameItem.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_FlagNameItem.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\GraphicsPixmapItem.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_GraphicsPixmapItem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\GraphicsPixmapTitleItem.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_GraphicsPixmapTitleItem.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\InfosItem.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_InfosItem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\MySlot.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_MySlot.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Windows\Dependency\NodeLink.cpp">
       <Filter>Windows\Dependency</Filter>
     </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_NodeLink.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="Windows\Dependency\PassItem.cpp">
       <Filter>Windows\Dependency</Filter>
+    </ClCompile>
+    <ClCompile Include="$(IntDir)generated\moc_PassItem.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -207,7 +207,6 @@ public:
   rdcarray<ResourceDescription> GetResources() { return m_Resources; }
   rdcarray<TextureDescription> GetTextures() { return {m_TexDetails}; }
   TextureDescription GetTexture(ResourceId id) { return m_TexDetails; }
-  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
   void GetTextureData(ResourceId tex, const Subresource &sub, const GetTextureDataParams &params,
                       bytebuf &data)
   {
@@ -396,6 +395,7 @@ public:
   }
 
   void FileChanged() { RefreshFile(); }
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
 private:
   void RefreshFile();
   void CreateProxyTexture(TextureDescription &texDetails, read_tex_data &read_data);

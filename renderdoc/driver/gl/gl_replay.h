@@ -298,6 +298,7 @@ public:
 
   bool CreateFragmentShaderReplacementProgram(GLuint program, GLuint replacedProgram, GLuint pipeline,
                                               GLuint fragShader, GLuint fragShaderSPIRV);
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
 
 private:
   void OpenGLFillCBufferVariables(ResourceId shader, GLuint prog, bool bufferBacked, rdcstr prefix,

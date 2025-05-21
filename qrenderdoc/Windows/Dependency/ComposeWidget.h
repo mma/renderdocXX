@@ -3,7 +3,7 @@
 #include "BaseGraphicsWidget.h"
 #include <QGraphicsLinearLayout>
 #include <QPropertyAnimation>
-#include "GraphicsTextAndPixmapItem.h"
+#include "PassItem.h"
 #include "FlagNameItem.h"
 #include <QAction>
 #include "DependencyMenu.h"
@@ -19,8 +19,8 @@ public:
     ~ComposeWidget();
     QSizeF getRS() { return rs; };
     void setRS(QSizeF f);
-    QVector<GraphicsTextAndPixmapItem *> mItems;
-    std::vector<std::shared_ptr<GraphicsTextAndPixmapItem>> mLayoutItems;
+    QVector<PassItem *> mItems;
+    std::vector<std::shared_ptr<PassItem>> mLayoutItems;
 
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;

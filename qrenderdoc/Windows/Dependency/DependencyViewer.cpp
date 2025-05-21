@@ -1,8 +1,8 @@
 #include "DependencyViewer.h"
-#include "ui_DependencyViewer.h"
-#include <QPropertyAnimation>
 #include <QDebug>
-#include "dependency_info.h" // 包含 vivo::DepPassInfo 等结构
+#include <QPropertyAnimation>
+#include "dependency_info.h"    // 包含 vivo::DepPassInfo 等结构
+#include "ui_DependencyViewer.h"
 using namespace vivo;
 
 ResourceFormat MakeRGBA8Format()
@@ -18,93 +18,73 @@ ResourceFormat MakeRGBA8Format()
 DependencyViewer::DependencyViewer(ICaptureContext &ctx, QWidget *parent)
     : QFrame(parent), ui(new Ui::DependencyViewer), m_Ctx(ctx)
 {
-    ui->setupUi(this);
-    setWindowTitle(tr("Dependency Viewer"));
-    connect(ui->graphicsView, &DependencyView::ZoomScale, this,
-            [this](QString s) { ui->label->setText(s); });
-    TestFunc();
+  ui->setupUi(this);
+  setWindowTitle(tr("Dependency Viewer"));
+  connect(ui->graphicsView, &DependencyView::ZoomScale, this,
+          [this](QString s) { ui->label->setText(s); });
+  TestFunc();
 }
 
 DependencyViewer::~DependencyViewer()
 {
-    m_Ctx.BuiltinWindowClosed(this);
-    m_Ctx.RemoveCaptureViewer(this);
-    qobject_cast<DependencyScene *>(ui->graphicsView->scene())->SetCanUpdate(false);
+  m_Ctx.BuiltinWindowClosed(this);
+  m_Ctx.RemoveCaptureViewer(this);
+  qobject_cast<DependencyScene *>(ui->graphicsView->scene())->SetCanUpdate(false);
 
-    delete ui;
+  delete ui;
 }
 
 void DependencyViewer::TestFunc()
 {
-  auto scene = qobject_cast<DependencyScene *>(ui->graphicsView->scene());
+  DependencyScene *scene = qobject_cast<DependencyScene *>(ui->graphicsView->scene());
+  scene->clear();
 
-  rdcarray<DepPassInfo> passes = CreateFakeDepPassInfos();
+  rdcarray<vivo::DepPassInfo> passes = m_Ctx.GetDepPassInfos();
 
-  std::map<ResourceId, PassItem *> outputMap;
-  std::vector<PassItem *> nodeItems;
+  const int spacingX = 400;
+  const int spacingY = 300;
+  const int itemsPerRow = 4;
 
-  QPoint basePos(100, 100);
-  int yOffset = 0;
+  int row = 0, col = 0;
 
-  for(const auto &pass : passes)
+  for(int i = 0; i < passes.size(); ++i)
   {
-    // 创建一个图形节点
+    const auto &pass = passes[i];
+
     PassItem *item = new PassItem();
     scene->addItem(item);
-    item->setPos(basePos.x(), basePos.y() + yOffset);
-    yOffset += 300;    // 每个 node 垂直偏移
 
-    // 设置标题：Pass idx、EID、FBO、RP
-    QString title = QStringLiteral("Pass %1 (%2-%3)\nFBO %4, RP %5")
+    QString title = QStringLiteral("Pass ID #%1 (%2 - %3)\nFBO %4, RP %5")
                         .arg(pass.m_PassIdx)
                         .arg(pass.m_StartEid)
                         .arg(pass.m_EndEid)
                         .arg(ToStr(pass.m_FBO))
                         .arg(ToStr(pass.m_RP));
-    item->mTItem->mItem->setText(title);
 
-    // 填充 Input 信息展示
-    for(const auto &input : pass.m_InputInfos)
+    item->SetTitleText(title);
+    item->SetInputInfoList(pass.m_InputInfos);
+    item->SetOutputInfoList(pass.m_OutputInfos);
+
+    // 自动排布
+    int x = 100 + col * spacingX;
+    int y = 100 + row * spacingY;
+    item->setPos(x, y);
+
+    if(++col >= itemsPerRow)
     {
-      QString usageText = QStringLiteral("Slot %1, Draw %2, Usage: %3, ImgID %4")
-                              .arg(input.m_BindSlot)
-                              .arg(input.m_DrawEid)
-                              .arg(input.m_Usage)
-                              .arg(ToStr(input.m_ImageInfo.m_ImageID));
-      item->mInfos->mItems[input.m_BindSlot % item->mInfos->mItems.size()]->mItem->setText(usageText);
-    }
-
-    // 建立输出资源映射
-    for(const auto &output : pass.m_OutputInfos)
-    {
-      outputMap[output.m_ImageInfo.m_ImageID] = item;
-    }
-
-    nodeItems.push_back(item);
-  }
-
-  // 建立连接：input 依赖哪个 output（通过 ResourceId 匹配）
-  for(auto *targetItem : nodeItems)
-  {
-    const auto &pass =
-        passes[targetItem->mTItem->mItem->text().split(QStringLiteral(" ")).at(1).toUInt()];    // 获取当前 PassId
-
-    for(const auto &input : pass.m_InputInfos)
-    {
-      ResourceId res = input.m_ImageInfo.m_ImageID;
-
-      if(outputMap.count(res) > 0)
-      {
-        PassItem *srcItem = outputMap[res];
-        scene->AddLink(srcItem->mItem->mOut.get(), targetItem->mTItem->mIn.get());
-      }
+      col = 0;
+      ++row;
     }
   }
+
+  ui->graphicsView->centerOn(0, 0);
 }
 
 void DependencyViewer::showEvent(QShowEvent *e)
 {
-  static_cast<DependencyScene *>(ui->graphicsView->scene())->Update();
+  QWidget::showEvent(e);
+  if(auto *scene = qobject_cast<DependencyScene *>(ui->graphicsView->scene()))
+    scene->Update();
 }
 
 void DependencyViewer::OnCaptureLoaded()

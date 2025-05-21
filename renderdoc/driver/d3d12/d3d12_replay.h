@@ -289,6 +289,7 @@ public:
   AMDCounters *GetAMDCounters() { return m_pAMDCounters; }
   void PatchQuadWritePS(D3D12_EXPANDED_PIPELINE_STATE_STREAM_DESC &pipeDesc, uint32_t regSpace,
                         bool dxil);
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
 
 private:
   void FillDescriptor(Descriptor &dst, const D3D12Descriptor *src);

@@ -1809,6 +1809,19 @@ protected:
 
 DECLARE_REFLECTION_STRUCT(IRGPInterop);
 
+DOCUMENT("The dependency viewer window. This window is retrieved by calling "
+    ":meth:`CaptureContext.GetDependencyViewer`.");
+struct IDependencyViewer
+{
+  virtual QWidget *Widget() = 0;
+
+protected:
+  IDependencyViewer() = default;
+  ~IDependencyViewer() = default;
+};
+
+DECLARE_REFLECTION_STRUCT(IDependencyViewer);
+
 DOCUMENT("The capture context that the python script is running in.")
 struct ICaptureContext
 {
@@ -2883,6 +2896,8 @@ capture's API.
 :rtype: ExtensionManager
 )");
   virtual IExtensionManager &Extensions() = 0;
+
+  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
 
 protected:
   ICaptureContext() = default;

@@ -23,7 +23,7 @@ ComposeWidget::ComposeWidget(int itemCount, QGraphicsItem *parent, Qt::WindowFla
     mHContentsLayout->addStretch();
     for(int i = 0; i < itemCount; ++i)
     {
-      auto tap = std::make_shared<GraphicsTextAndPixmapItem>();
+      auto tap = std::make_shared<PassItem>();
       mLayoutItems.push_back(tap);    // 保存到成员列表
       mHContentsLayout->addItem(tap.get());
     }

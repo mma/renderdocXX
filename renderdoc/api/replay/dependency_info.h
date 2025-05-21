@@ -8,6 +8,7 @@
 
 namespace vivo
 {
+
 enum DepPassType
 {
   PASS_TYPE_RENDERPASS = 0,
@@ -108,6 +109,12 @@ struct DepPassInfo
     if(m_PassType != in.m_PassType)
       return false;
 
+    if(m_CmdBuf != in.m_CmdBuf)
+      return false;
+
+    if(m_SubmissionIdx != in.m_SubmissionIdx)
+      return false;
+
     if(m_RP != in.m_RP)
       return false;
 
@@ -135,6 +142,9 @@ struct DepPassInfo
   uint32_t m_EndEid;
 
   DepPassType m_PassType;
+
+  ResourceId m_CmdBuf;
+  uint32_t m_SubmissionIdx;
 
   /* for render pass */
   ResourceId m_RP;
