@@ -298,6 +298,8 @@ public:
 
   bool CreateFragmentShaderReplacementProgram(GLuint program, GLuint replacedProgram, GLuint pipeline,
                                               GLuint fragShader, GLuint fragShaderSPIRV);
+  //void SetTrimOptions(vivo::TrimOptions trimOptions) {}
+  //vivo::TrimResults GetTrimResults() { return vivo::TrimResults(); }
   rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return {}; }
 
 private:

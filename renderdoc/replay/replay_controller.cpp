@@ -2345,3 +2345,11 @@ void ReplayController::FetchPipelineState(uint32_t eventId)
 
   m_PipeState.SetDescriptorAccess(std::move(access), std::move(descs), std::move(samps));
 }
+
+rdcarray<vivo::DepPassInfo> ReplayController::GetDepPassInfos()
+{
+  CHECK_REPLAY_THREAD();
+  RENDERDOC_PROFILEFUNCTION();
+
+  return m_pDevice->GetDepPassInfos();
+}

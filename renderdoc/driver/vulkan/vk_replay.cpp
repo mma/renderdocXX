@@ -5413,3 +5413,7 @@ RDResult Vulkan_ProcessStructured(RDCFile *rdc, SDFile &output)
 
 static StructuredProcessRegistration VulkanProcessRegistration(RDCDriver::Vulkan,
                                                                &Vulkan_ProcessStructured);
+rdcarray<vivo::DepPassInfo> VulkanReplay::GetDepPassInfos()
+{
+  return m_pDriver->GetDepPassInfos();
+}

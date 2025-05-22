@@ -247,6 +247,7 @@ public:
   void Shutdown();
 
   bool FatalErrorCheck();
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos();
 
 private:
   virtual ~ReplayController();

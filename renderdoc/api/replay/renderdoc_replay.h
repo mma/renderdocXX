@@ -1121,6 +1121,8 @@ texture to something compatible with the target file format.
 
   static const uint32_t NoPreference = ~0U;
 
+  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
+
 protected:
   IReplayController() = default;
   ~IReplayController() = default;

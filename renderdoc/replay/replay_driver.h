@@ -251,6 +251,8 @@ public:
   virtual DriverInformation GetDriverInfo() = 0;
 
   virtual rdcarray<GPUDevice> GetAvailableGPUs() = 0;
+
+  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
 };
 
 class IReplayDriver : public IRemoteDriver
@@ -311,7 +313,6 @@ public:
   virtual uint32_t PickVertex(uint32_t eventId, int32_t width, int32_t height,
                               const MeshDisplay &cfg, uint32_t x, uint32_t y) = 0;
 
-  virtual rdcarray<vivo::DepPassInfo> GetDepPassInfos() = 0;
 };
 
 // for protocols, we extend the public interface a bit to add callbacks for remapping connection

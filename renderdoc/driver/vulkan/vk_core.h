@@ -288,6 +288,7 @@ private:
   friend class VulkanDebugManager;
   friend struct VulkanRenderState;
   friend class VulkanShaderCache;
+  friend class VulkanDepEngine;
 
   struct ScopedDebugMessageSink
   {
@@ -3050,4 +3051,15 @@ public:
   void vkGetImageSubresourceLayout2EXT(VkDevice device, VkImage image,
                                        const VkImageSubresource2 *pSubresource,
                                        VkSubresourceLayout2 *pLayout);
+
+public:
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos() { return m_DepPassInfos; }
+
+  VulkanDepEngine *GetDepEngine() { return m_DepEngine; }
+
+private:
+  bool m_bDepDone = false;
+  rdcarray<vivo::DepPassInfo> m_DepPassInfos;
+
+  VulkanDepEngine *m_DepEngine = NULL;
 };

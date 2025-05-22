@@ -500,6 +500,9 @@ public:
 
   bool Depth3DSupported() { return m_TexRender.DummyImages[3][2] != VK_NULL_HANDLE; }
   bool DepthCubeSupported() { return m_TexRender.DepthCubesSupported; }
+  //void SetTrimOptions(vivo::TrimOptions trimOptions);
+  //vivo::TrimResults GetTrimResults();
+  rdcarray<vivo::DepPassInfo> GetDepPassInfos();
 private:
   bool FetchShaderFeedback(uint32_t eventId);
   void ClearFeedbackCache();
